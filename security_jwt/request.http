@@ -1,0 +1,4 @@
+GET http://localhost:8080/shop
+Authorization: 123456789
+
+###

@@ -1,5 +1,6 @@
 package com.example.security_jwt.filter;
 
+import com.example.security_jwt.util.JWTUtil;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -15,8 +16,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Slf4j
 public class ApiLoginFilter extends AbstractAuthenticationProcessingFilter {
-    public ApiLoginFilter(String defaultFilterProcessesUrl) {
+    private JWTUtil jwtUtil;
+    public ApiLoginFilter(String defaultFilterProcessesUrl, JWTUtil jwtUtil) {
         super(defaultFilterProcessesUrl);
+        this.jwtUtil = jwtUtil;
     }
 
     @Override
@@ -42,6 +45,8 @@ public class ApiLoginFilter extends AbstractAuthenticationProcessingFilter {
                                             Authentication authResult)
         throws IOException, ServletException {
         // TODO 2 : jwt 토큰발급
+
+        
 
     }
 }

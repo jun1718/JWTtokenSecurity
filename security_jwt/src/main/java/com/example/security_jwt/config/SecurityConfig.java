@@ -3,6 +3,7 @@ package com.example.security_jwt.config;
 import com.example.security_jwt.filter.ApiCheckFilter;
 import com.example.security_jwt.filter.ApiLoginFilter;
 import com.example.security_jwt.handler.ApiLoginFailHandler;
+import com.example.security_jwt.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,8 +34,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public JWTUtil jwtUtil() {
+        return new JWTUtil();
+    }
+
+    @Bean
     public ApiLoginFilter apiLoginFilter() throws Exception {
-        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login");
+        ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login", null);
         apiLoginFilter.setAuthenticationManager(authenticationManager());
 
         apiLoginFilter.setAuthenticationFailureHandler(new ApiLoginFailHandler());
